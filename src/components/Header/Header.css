@@ -1,0 +1,42 @@
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  border-bottom: 2px solid #c6ff0a;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #c6ff0a;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-menu button {
+  background: none;
+  border: none;
+  color: #fefefd;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.nav-menu button:hover {
+  background-color: #c6ff0a;
+  color: #000;
+}
