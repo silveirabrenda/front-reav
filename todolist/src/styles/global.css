@@ -1,4 +1,0 @@
-body { font-family: sans-serif; background: #f0f0f0; }
-.app-container { max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 15px; }
-.task-card { padding: 15px; margin-bottom: 20px; border-radius: 10px; background: #fafafa; border: 1px solid #ddd; }
-.task-card.completed { background: #c8e6c9; }
