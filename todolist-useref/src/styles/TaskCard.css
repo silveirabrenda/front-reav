@@ -13,7 +13,7 @@
 }
 
 .task-card.completed {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0e2aa3 0%, #590ca7 100%);
   border-color: #667eea;
   color: white;
 }
@@ -95,7 +95,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #102fbb 0%, #6f0ecf 100%);
   transition: width 0.5s ease;
   border-radius: 5px;
 }
@@ -147,7 +147,7 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: #1935b1;
 }
 
 .step-text {
