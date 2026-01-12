@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "titulo": "Estudar React Router",
+    "status": "pendente",
+    "prioridade": "Alta",
+    "descricao": "Finalizar a tarefa do Tópico 04 e enviar para o Prof. Gill."
+  },
+  {
+    "id": 2,
+    "titulo": "Configurar Repositório Git",
+    "status": "concluido",
+    "prioridade": "Média",
+    "descricao": "Adicionar o professor como colaborador no GitHub."
+  }
+]
