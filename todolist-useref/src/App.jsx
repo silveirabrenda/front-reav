@@ -1,35 +1,108 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import TaskForm from './components/TaskForm';
+import TaskCard from './components/TaskCard';
+import './styles/global.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const savedTasks = localStorage.getItem('todolist-tasks');
+    if (savedTasks) {
+      try {
+        setTasks(JSON.parse(savedTasks));
+      } catch (error) {
+        console.error('Erro ao carregar tarefas:', error);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (tasks.length > 0) {
+      localStorage.setItem('todolist-tasks', JSON.stringify(tasks));
+    } else {
+      localStorage.removeItem('todolist-tasks');
+    }
+  }, [tasks]);
+
+  const handleCreateTask = (newTask) => {
+    setTasks([newTask, ...tasks]);
+  };
+
+  const handleDeleteTask = (taskId) => {
+    if (window.confirm('Tem certeza que deseja deletar esta tarefa?')) {
+      setTasks(tasks.filter(task => task.id !== taskId));
+    }
+  };
+
+  const handleToggleStep = (taskId, stepId) => {
+    setTasks(tasks.map(task => {
+      if (task.id === taskId) {
+        return {
+          ...task,
+          steps: task.steps.map(step =>
+            step.id === stepId ? { ...step, completed: !step.completed } : step
+          )
+        };
+      }
+      return task;
+    }));
+  };
+
+  const handleDeleteStep = (taskId, stepId) => {
+    setTasks(tasks.map(task => {
+      if (task.id === taskId) {
+        return {
+          ...task,
+          steps: task.steps.filter(step => step.id !== stepId)
+        };
+      }
+      return task;
+    }));
+  };
+
+  const handleAddStep = (taskId, stepText) => {
+    setTasks(tasks.map(task => {
+      if (task.id === taskId) {
+        return {
+          ...task,
+          steps: [...task.steps, { id: Date.now(), text: stepText, completed: false }]
+        };
+      }
+      return task;
+    }));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-container">
+      <div className="app-header">
+        <h1>📋 TodoList</h1>
+        <p>Organize suas tarefas e acompanhe seu progresso</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <TaskForm onCreateTask={handleCreateTask} />
+
+      {tasks.length === 0 ? (
+        <div className="empty-state">
+          <h2>Nenhuma tarefa ainda</h2>
+          <p>Crie sua primeira tarefa acima!</p>
+        </div>
+      ) : (
+        <div className="tasks-container">
+          {tasks.map(task => (
+            <TaskCard
+              key={task.id}
+              task={task}
+              onDeleteTask={handleDeleteTask}
+              onToggleStep={handleToggleStep}
+              onDeleteStep={handleDeleteStep}
+              onAddStep={handleAddStep}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,72 @@
+body {
+  font-family: sans-serif;
+  background: #f0f0f0;
+  color: #333; /* Texto padrão legível */
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+  color: #333; /* Garantir que textos dentro do container fiquem pretos */
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.app-header h1 {
+  font-size: 36px;
+  color: #333; /* título visível */
+}
+
+.task-card {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  color: #333; /* texto dentro do card */
+}
+
+.task-card.completed {
+  background: #c8e6c9;
+  color: #000; /* texto visível quando completado */
+}
+
+.task-card h3 {
+  margin: 0 0 10px;
+  color: #333; /* título da tarefa */
+}
+
+.task-card p {
+  color: #555; /* descrição da tarefa */
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  color: #333; /* texto do passo */
+}
+
+.step-item.completed {
+  background-color: #e0e0e0;
+  color: #555; /* passo completado */
+}
+
+.step-text.completed {
+  text-decoration: line-through;
+  color: #555;
+}
+
+input, textarea {
+  color: #000; /* texto digitado visível */
+  background-color: #fff; /* fundo branco para digitar */
+}
